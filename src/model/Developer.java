@@ -6,6 +6,7 @@ public class Developer {
     private Set<Skill> skillSet;
     private Account account;
     private AccountStatus accountStatus;
+    private Long id;
 
     public Set<Skill> getSkillSet() {
         return skillSet;
@@ -29,5 +30,13 @@ public class Developer {
 
     public void setAccountStatus(AccountStatus accountStatus) {
         this.accountStatus = accountStatus;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -7,12 +7,21 @@ public class Test {
     public static void main(String[] args) throws Exception {
 
         GenericRepository gr = new JavaIOSkillRepositoryImpl();
-//        List<Skill> list = gr.getAll();
-//        for (Skill e: list) {
-//            System.out.println(e.getId() + ": " + e.getSkill());
-//        }
+        List<Skill> list = gr.getAll();
+        for (Skill e: list) {
+            System.out.println(e.getId() + ": " + e.getName());
+        }
 
-        Skill kr = (Skill) gr.getByID(new Long(2));
-        System.out.println(kr.getId() + "- " + kr.getSkill());
+        Skill kr = (Skill) gr.getByID(new Long(4));
+        System.out.println("+++++++++");
+        System.out.println(kr.getId() + "- " + kr.getName());
+
+        Skill newSkill = new Skill();
+        newSkill.setName("Kamil BOSS");
+        newSkill.setId((long)6);
+//        gr.save(newSkill);
+//        gr.update(newSkill);
+
+
     }
 }

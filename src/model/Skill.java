@@ -2,15 +2,15 @@ package model;
 
 public class Skill {
 
-    private String skill;
+    private String name;
     private Long id;
 
-    public String getSkill() {
-        return skill;
+    public String getName() {
+        return name;
     }
 
-    public void setSkill(String skill) {
-        this.skill = skill;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getId() {
