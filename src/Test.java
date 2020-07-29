@@ -17,9 +17,10 @@ public class Test {
         System.out.println(kr.getId() + "- " + kr.getName());
 
         Skill newSkill = new Skill();
-        newSkill.setName("Kamil BOSS");
-        newSkill.setId((long)6);
-//        gr.save(newSkill);
+        newSkill.setName("Python");
+//        newSkill.setId((long)5);
+        gr.deleteById((long)4);
+        gr.save(newSkill);
 //        gr.update(newSkill);
 
 

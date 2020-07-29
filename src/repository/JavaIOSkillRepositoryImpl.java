@@ -9,59 +9,43 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository{
     private final static String FILE_NAME = "skill.txt";
     @Override
     public void save(Skill val) throws Exception {
-        List<Skill> list = getAll();
+        List<Skill> list = getAllInternal();
         val.setId((long)list.size() + 1);
+        list.forEach(s-> {if (val.getId().equals(s.getId())) {val.setId(val.getId() + 1);}});
         list.add(val);
         IOSystem.write(FILE_NAME, convertToString(list));
     }
 
     @Override
     public void deleteById(Long id) throws Exception {
-        List<Skill> list = getAll();
+        List<Skill> list = getAllInternal();
         final long[] i = {1};
         if  (list.removeIf(s -> s.getId().equals(id))) {
-            list.forEach(s -> { s.setId(i[0]++);});
+//            list.forEach(s -> {s.setId(i[0]++);});
             IOSystem.write(FILE_NAME, convertToString(list));
         }
         else throw new Exception("Отсутсвует данный ID");
-
-
-//        Skill removeSkill = null;
-//        for (Skill val: list) {
-//            if (val.getId().equals(id)) {
-//                removeSkill = val;
-//            }
-//        }
-//        if (removeSkill != null) {
-//            list.remove(removeSkill);
-//            IOSystem.write(FILE_NAME, convertToString(list));
-//        }
-//        else throw new Exception("Отсутсвует данный ID");
-
     }
 
     @Override
     public Skill getByID(Long id) throws Exception {
         Skill result = null;
-        List<Skill> skills = getAll();
+        List<Skill> skills = getAllInternal();
         result= skills.stream().filter(s-> s.getId().equals(id)).findFirst().get();
-//        for (Skill val: skills) {
-//            if (val.getId().equals(id)) {result = val;}
-//        }
-        if (result != null) return result;
+        if (result != null) {return result;}
         else throw new Exception("Отсутсвует данный ID");
     }
 
     @Override
     public List<Skill> getAll() throws Exception {
-        List<String> list = IOSystem.read(FILE_NAME);
-        return convertToData(list);
+        return getAllInternal();
     }
 
     @Override
     public void update(Skill val) throws Exception {
-        deleteById(val.getId());
-        save(val);
+        List<Skill> skills = getAllInternal();
+        skills.forEach(s-> {if (s.getId().equals(val.getId())) {s.setName(val.getName());}});
+        IOSystem.write(FILE_NAME, convertToString(skills));
     }
 
     @Override
@@ -85,4 +69,9 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository{
         }
         return list;
     }
+    private List<Skill> getAllInternal() throws Exception {
+        List<String> list = IOSystem.read(FILE_NAME);
+        return convertToData(list);
+    }
+
 }
