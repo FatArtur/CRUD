@@ -19,9 +19,7 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository{
     @Override
     public void deleteById(Long id) throws Exception {
         List<Skill> list = getAllInternal();
-        final long[] i = {1};
         if  (list.removeIf(s -> s.getId().equals(id))) {
-//            list.forEach(s -> {s.setId(i[0]++);});
             IOSystem.write(FILE_NAME, convertToString(list));
         }
         else throw new Exception("Отсутсвует данный ID");
