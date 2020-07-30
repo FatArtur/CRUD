@@ -5,7 +5,7 @@ import java.util.*;
 
 public interface GenericRepository <T,ID>{
 
-    void save(T val) throws Exception;
+    T save(T val) throws Exception;
 
     void deleteById(Long id) throws Exception;
 
@@ -13,11 +13,5 @@ public interface GenericRepository <T,ID>{
 
     List<T> getAll() throws Exception;
 
-    void update(T val) throws Exception;
-
-    List<T> convertToData(List<String> val);
-
-    List<String> convertToString(List<T> val);
-
-
+    T update(T val) throws Exception;
 }

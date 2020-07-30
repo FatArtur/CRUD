@@ -12,14 +12,14 @@ public class Test {
             System.out.println(e.getId() + ": " + e.getName());
         }
 
-        Skill kr = (Skill) gr.getByID(new Long(4));
+        Skill kr = (Skill) gr.getByID(new Long(5));
         System.out.println("+++++++++");
         System.out.println(kr.getId() + "- " + kr.getName());
 
         Skill newSkill = new Skill();
-        newSkill.setName("Python");
+        newSkill.setName("C+");
 //        newSkill.setId((long)5);
-        gr.deleteById((long)4);
+        gr.deleteById((long)5);
         gr.save(newSkill);
 //        gr.update(newSkill);
 

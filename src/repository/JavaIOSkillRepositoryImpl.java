@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 public class JavaIOSkillRepositoryImpl implements SkillRepository{
     private final static String FILE_NAME = "skill.txt";
     @Override
-    public void save(Skill val) throws Exception {
+    public Skill save(Skill val) throws Exception {
         List<Skill> list = getAllInternal();
-        val.setId((long)list.size() + 1);
-        list.forEach(s-> {if (val.getId().equals(s.getId())) {val.setId(val.getId() + 1);}});
+        val.setId(list.stream().mapToLong(Skill::getId).max().getAsLong() + 1);
         list.add(val);
         IOSystem.write(FILE_NAME, convertToString(list));
+        return val;
     }
 
     @Override
@@ -40,14 +40,14 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository{
     }
 
     @Override
-    public void update(Skill val) throws Exception {
+    public Skill update(Skill val) throws Exception {
         List<Skill> skills = getAllInternal();
         skills.forEach(s-> {if (s.getId().equals(val.getId())) {s.setName(val.getName());}});
         IOSystem.write(FILE_NAME, convertToString(skills));
+        return val;
     }
 
-    @Override
-    public List<Skill> convertToData(List<String> val) {
+    private List<Skill> convertToData(List<String> val) {
         List<Skill> list = new ArrayList<>();
         for (String line: val) {
             String[] mas = line.split(",");
@@ -59,8 +59,7 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository{
         return list;
     }
 
-    @Override
-    public List<String> convertToString(List<Skill> val) {
+    private List<String> convertToString(List<Skill> val) {
         List<String> list = new ArrayList<>();
         for (Skill data: val) {
             list.add(data.getId() + "," + data.getName());
