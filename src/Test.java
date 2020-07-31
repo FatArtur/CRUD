@@ -16,11 +16,11 @@ public class Test {
         System.out.println("+++++++++");
         System.out.println(kr.getId() + "- " + kr.getName());
 
-        Skill newSkill = new Skill();
-        newSkill.setName("C+");
-//        newSkill.setId((long)5);
-        gr.deleteById((long)5);
-        gr.save(newSkill);
+//        Skill newSkill = new Skill();
+//        newSkill.setName("C++");
+//        newSkill.setId((long)4);
+//        gr.deleteById((long)6);
+//        gr.save(newSkill);
 //        gr.update(newSkill);
 
 
