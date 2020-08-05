@@ -1,10 +1,10 @@
 package view;
 
-import controller.ControllerRepository;
+import controller.SkillController;
 
 import java.util.Scanner;
 
-public class ViewRepository {
+public class SkillView {
 
     private String viewMenu = "\nВыберите действие для Skill: \n" +
             "1.Создать\n" +
@@ -15,7 +15,7 @@ public class ViewRepository {
             "6.Выход\n";
 
     private Scanner scan;
-    private ControllerRepository controller = new ControllerRepository();
+    private SkillController controller = new SkillController();
 
     public void run() {
         boolean istrue = false;
@@ -27,27 +27,28 @@ public class ViewRepository {
             try {
                 switch (txt) {
                     case "1":
-                        System.out.println("Введите новый Skill");
+                        System.out.println(Message.NEW);
                         txt = scan.next();
                         controller.create(txt);
                         break;
                     case "2":
-                        System.out.println("Введите номер удаляемого ID");
+                        System.out.println(Message.ID);
                         txt = scan.next();
                         controller.delete(txt);
                         break;
                     case "3":
-                        System.out.println("Введите номер получаемого ID");
+                        System.out.println(Message.ID);
                         txt = scan.next();
                         controller.getByID(txt);
                         break;
                     case "4":
-                        System.out.println("Все имеющиеся Skill:");
+                        System.out.println(Message.ALL);
                         controller.getAll();
                         break;
                     case "5":
-                        System.out.println("Введите номер ID");
+                        System.out.println(Message.ID);
                         txt = scan.next();
+                        System.out.println(Message.CHANGE);
                         String txt2 = scan.next();
                         controller.update(txt,txt2);
                         break;
@@ -55,7 +56,7 @@ public class ViewRepository {
                         istrue = true;
                         break;
                     default:
-                        System.out.println("Введено не корректное значение");
+                        System.out.println(Message.NOVALUE);
                 }
             } catch (Exception e) {
                 System.err.println(e);
