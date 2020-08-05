@@ -1,16 +1,16 @@
 package model;
 
 public class Account {
-    private String account;
+    private String name;
     private Long id;
     private AccountStatus accountStatus;
 
-    public String getAccount() {
-        return account;
+    public String getName() {
+        return name;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getId() {
