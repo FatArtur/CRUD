@@ -1,6 +1,7 @@
 package view;
 
 import controller.AccountController;
+import model.Account;
 import model.AccountStatus;
 
 import java.util.Scanner;
@@ -59,7 +60,7 @@ public class AccountView {
                         System.out.println(Message.NOVALUE);
                 }
             } catch (Exception e) {
-                System.err.println(e);
+                System.out.println(e);
             }
         }
 

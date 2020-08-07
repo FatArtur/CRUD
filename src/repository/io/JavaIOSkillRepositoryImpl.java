@@ -1,19 +1,26 @@
-package repository;
+package repository.io;
 
+import model.Account;
 import model.Skill;
+import repository.SkillRepository;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JavaIOSkillRepositoryImpl implements SkillRepository{
+public class JavaIOSkillRepositoryImpl implements SkillRepository {
     private final static String FILE_NAME = "skill.txt";
     @Override
     public Skill save(Skill val) throws Exception {
         List<Skill> list = getAllInternal();
-        val.setId(list.stream().mapToLong(Skill::getId).max().getAsLong() + 1);
+        val.setId(nextNum(list));
         list.add(val);
         IOSystem.write(FILE_NAME, convertToString(list));
         return val;
+    }
+
+    private Long nextNum(List<Skill> list){
+        return list.stream().mapToLong(Skill::getId).max().getAsLong() + 1;
     }
 
     @Override
@@ -29,7 +36,7 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository{
     public Skill getByID(Long id) throws Exception {
         List<Skill> skills = getAllInternal();
         return skills.stream().filter(s-> s.getId().equals(id)).findFirst().
-                orElseThrow(()-> new IOException("Отсутсвует данный ID"));
+                orElse(null);
     }
 
     @Override

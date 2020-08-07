@@ -1,18 +1,19 @@
 package model;
 
-import java.util.Set;
+import java.util.List;
+
 
 public class Developer {
-    private Set<Skill> skillSet;
+    private List<Skill> skill;
     private Account account;
     private Long id;
 
-    public Set<Skill> getSkillSet() {
-        return skillSet;
+    public List<Skill> getSkill() {
+        return skill;
     }
 
-    public void setSkillSet(Set<Skill> skillSet) {
-        this.skillSet = skillSet;
+    public void setSkill(List<Skill> skill) {
+        this.skill = skill;
     }
 
     public Account getAccount() {

@@ -1,7 +1,9 @@
-package repository;
+package repository.io;
 
 import model.Account;
 import model.AccountStatus;
+import repository.AccountRepository;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,11 +14,15 @@ public class JavaIOAccountRepositoryImpl implements AccountRepository {
     @Override
     public Account save(Account val) throws Exception {
         List<Account> list = getAllInternal();
-        val.setId(list.stream().mapToLong(Account::getId).max().getAsLong() + 1);
+        val.setId(nextNum(list));
         val.setAccountStatus(AccountStatus.ACTIVE);
         list.add(val);
         IOSystem.write(FILE_NAME, convertToString(list));
         return val;
+    }
+
+    private Long nextNum(List<Account> list){
+        return list.stream().mapToLong(Account::getId).max().getAsLong() + 1;
     }
 
     @Override
@@ -33,7 +39,7 @@ public class JavaIOAccountRepositoryImpl implements AccountRepository {
     public Account getByID(Long id) throws Exception {
         List<Account> account = getAllInternal();
         return account.stream().filter(s -> s.getId().equals(id)).findFirst().
-                orElseThrow(() -> new IOException("Отсутсвует данный ID"));
+                orElse(null);
     }
 
     @Override

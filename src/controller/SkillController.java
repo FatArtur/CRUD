@@ -1,7 +1,7 @@
 package controller;
 
 import model.Skill;
-import repository.JavaIOSkillRepositoryImpl;
+import repository.io.JavaIOSkillRepositoryImpl;
 import repository.SkillRepository;
 import java.util.List;
 
