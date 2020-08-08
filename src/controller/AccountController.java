@@ -24,18 +24,21 @@ public class AccountController {
 
     public Account getByID(String val) throws Exception {
         Account account = repo.getByID(Long.parseLong(val));
-        System.out.println("ID = " + account.getId() + " Skill = " + account.getName() +
-                " STATUS: " + account.getAccountStatus());
+        if (account == null) {
+            System.out.println("Введено не корректное значение");
+        } else
+            System.out.println("ID = " + account.getId() + " Skill = " + account.getName() +
+                    " STATUS: " + account.getAccountStatus());
         return account;
     }
 
     public void getAll() throws Exception {
         List<Account> list = repo.getAll();
-        list.stream().forEach(s-> System.out.println("ID = " + s.getId() + " Skill = " + s.getName() +
+        list.stream().forEach(s -> System.out.println("ID = " + s.getId() + " Skill = " + s.getName() +
                 " STATUS: " + s.getAccountStatus()));
     }
 
-    public Account update(String val1, String val2, AccountStatus val3) throws Exception{
+    public Account update(String val1, String val2, AccountStatus val3) throws Exception {
         Account account = new Account();
         account.setId(Long.parseLong(val1));
         account.setName(val2);

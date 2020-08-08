@@ -3,6 +3,7 @@ package controller;
 import model.Skill;
 import repository.io.JavaIOSkillRepositoryImpl;
 import repository.SkillRepository;
+
 import java.util.List;
 
 public class SkillController {
@@ -20,16 +21,19 @@ public class SkillController {
 
     public Skill getByID(String val) throws Exception {
         Skill skill = (Skill) repo.getByID(Long.parseLong(val));
-        System.out.println("ID = " + skill.getId() + " Skill = " + skill.getName());
+        if (skill == null) {
+            System.out.println("Введено не корректное значение");
+        } else
+            System.out.println("ID = " + skill.getId() + " Skill = " + skill.getName());
         return skill;
     }
 
     public void getAll() throws Exception {
         List<Skill> list = repo.getAll();
-        list.stream().forEach(s-> System.out.println("ID = " + s.getId() + " Skill = " + s.getName()));
+        list.stream().forEach(s -> System.out.println("ID = " + s.getId() + " Skill = " + s.getName()));
     }
 
-    public Skill update(String val1, String val2) throws Exception{
+    public Skill update(String val1, String val2) throws Exception {
         Skill skill = new Skill();
         skill.setId(Long.parseLong(val1));
         skill.setName(val2);
