@@ -23,8 +23,7 @@ public class SkillController {
         Skill skill = (Skill) repo.getByID(Long.parseLong(val));
         if (skill == null) {
             System.out.println("Введено не корректное значение");
-        } else
-            System.out.println("ID = " + skill.getId() + " Skill = " + skill.getName());
+        }
         return skill;
     }
 

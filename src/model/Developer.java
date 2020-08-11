@@ -7,6 +7,7 @@ public class Developer {
     private List<Skill> skill;
     private Account account;
     private Long id;
+    private String name;
 
     public List<Skill> getSkill() {
         return skill;
@@ -30,5 +31,13 @@ public class Developer {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -3,8 +3,6 @@ package repository.io;
 import model.Account;
 import model.AccountStatus;
 import repository.AccountRepository;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +19,7 @@ public class JavaIOAccountRepositoryImpl implements AccountRepository {
         return val;
     }
 
-    private Long nextNum(List<Account> list){
+    private Long nextNum(List<Account> list) {
         return list.stream().mapToLong(Account::getId).max().getAsLong() + 1;
     }
 

@@ -1,7 +1,8 @@
 package repository.io;
 
+import controller.AccountController;
+import controller.SkillController;
 import model.Account;
-import model.AccountStatus;
 import model.Developer;
 import model.Skill;
 import repository.DeveloperRepository;
@@ -15,17 +16,31 @@ public class JavaIODeveloperRepositoryImpl implements DeveloperRepository {
 
     @Override
     public Developer save(Developer val) throws Exception {
-        return null;
+        List<Developer> list = getAll();
+        val.setId(nextNum(list));
+        list.add(val);
+        IOSystem.write(FILE_NAME, convertToString(list));
+        return val;
+    }
+
+    private Long nextNum(List<Developer> list){
+        return list.stream().mapToLong(Developer::getId).max().getAsLong() + 1;
     }
 
     @Override
     public void deleteById(Long id) throws Exception {
-
+        List<Developer> list = getAllInternal();
+        if (!list.removeIf(s -> s.getId().equals(id))) {
+            throw new Exception("Отсутсвует данный ID");
+        }
+        IOSystem.write(FILE_NAME, convertToString(list));
     }
 
     @Override
     public Developer getByID(Long id) throws Exception {
-        return null;
+        List<Developer> developer = getAllInternal();
+        return developer.stream().filter(s -> s.getId().equals(id)).findFirst().
+                orElse(null);
     }
 
     @Override
@@ -35,49 +50,58 @@ public class JavaIODeveloperRepositoryImpl implements DeveloperRepository {
 
     @Override
     public Developer update(Developer val) throws Exception {
-        return null;
+        List<Developer> developers = getAllInternal();
+        developers.forEach(s -> {
+            if (s.getId().equals(val.getId())) {
+                s.setName(val.getName());
+                s.setAccount(val.getAccount());
+                s.setSkill(val.getSkill());
+            }
+        });
+        IOSystem.write(FILE_NAME, convertToString(developers));
+        return val;
     }
 
     private List<Developer> convertToData(List<String> val) {
         return  val.stream().map(s-> s.split("/")).map(s->{
             Developer developer = new Developer();
             developer.setId(Long.parseLong(s[0]));
-            developer.setAccount(convertToAccount(s[1]));
-            developer.setSkill(convertToSkill(s[2]));
+            developer.setName(s[1]);
+            developer.setAccount(convertToAccount(s[2]));
+            developer.setSkill(convertToSkill(s[3]));
             return developer;
         }).collect(Collectors.toList());
     }
 
-    private Account convertToAccount(String val){
-        String[] s = val.split(",");
-        Account account = new Account();
-        account.setName(s[0]);
-        account.setAccountStatus(AccountStatus.valueOf(s[1]));
-        return account;
+    private Account convertToAccount(String val) {
+        AccountController account = new AccountController();
+        try {
+            return account.getByID(val);
+        } catch (Exception e){
+            return null;
+        }
     }
 
     private List<Skill> convertToSkill(String val) {
-        String[] txt = val.split(";");
-        return Arrays.stream(txt).map(s-> s.split(",")).map(s->{
-            Skill skill = new Skill();
-            skill.setId(Long.parseLong(s[0]));
-            skill.setName(s[1]);
-            return skill;
+        String[] txt = val.split(",");
+        return Arrays.stream(txt).map(s->{
+            SkillController skillController = new SkillController();
+            try {
+                return skillController.getByID(s);
+            } catch (Exception e){
+                return null;
+            }
         }).collect(Collectors.toList());
     }
 
     private List<String> convertToString(List<Developer> val) {
-        return val.stream().map(s-> s.getId() + "/" + convertAccountToString(s.getAccount()) + "/" +
+        return val.stream().map(s-> s.getId() + "/" + s.getName() + "/" + s.getAccount().getId() + "/" +
                 convertSkillToString(s.getSkill())).collect(Collectors.toList());
     }
 
-    private String convertAccountToString(Account val){
-        return val.getName() + "," + val.getAccountStatus();
-    }
-
     private String convertSkillToString(List<Skill> val){
-        List<String> list = val.stream().map(s-> s.getId() + "," + s.getName()).collect(Collectors.toList());
-        return list.stream().reduce((s1,s2) -> s1 + ";" + s2).orElse(null);
+        List<String> list = val.stream().map(s-> s.getId() + "").collect(Collectors.toList());
+        return list.stream().reduce((s1,s2) -> s1 + "," + s2).orElse(null);
     }
 
     private List<Developer> getAllInternal() throws Exception {

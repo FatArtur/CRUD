@@ -1,6 +1,7 @@
 package view;
 
 import controller.SkillController;
+import model.Skill;
 
 import java.util.Scanner;
 
@@ -39,7 +40,7 @@ public class SkillView {
                     case "3":
                         System.out.println(Message.ID);
                         txt = scan.next();
-                        controller.getByID(txt);
+                        print(controller.getByID(txt));
                         break;
                     case "4":
                         System.out.println(Message.ALL);
@@ -63,5 +64,9 @@ public class SkillView {
             }
         }
 
+    }
+
+    private void print(Skill skill) {
+        System.out.println("ID = " + skill.getId() + " Skill = " + skill.getName());
     }
 }

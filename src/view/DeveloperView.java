@@ -1,13 +1,17 @@
 package view;
 
-import controller.AccountController;
+
+import controller.DeveloperController;
 import model.Account;
-import model.AccountStatus;
+import model.Developer;
+import model.Skill;
 
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
-public class AccountView {
-    private String viewMenu = "\nВыберите действие для Account: \n" +
+public class DeveloperView {
+    private String viewMenu = "\nВыберите действие для Developer: \n" +
             "1.Создать\n" +
             "2.Удалить\n" +
             "3.Получить по ID\n" +
@@ -16,7 +20,7 @@ public class AccountView {
             "6.Выход\n";
 
     private Scanner scan;
-    private AccountController controller = new AccountController();
+    private DeveloperController controller = new DeveloperController();
 
     public void run() {
         boolean istrue = false;
@@ -44,15 +48,15 @@ public class AccountView {
                         break;
                     case "4":
                         System.out.println(Message.ALL);
-                        controller.getAll();
+                        controller.getAll().stream().forEach(s-> print(s));
                         break;
-                    case "5":
-                        System.out.println(Message.ID);
-                        txt = scan.next();
-                        System.out.println(Message.CHANGE);
-                        String txt2 = scan.next();
-                        controller.update(txt, txt2, status());
-                        break;
+//                    case "5":
+//                        System.out.println(Message.ID);
+//                        txt = scan.next();
+//                        System.out.println(Message.CHANGE);
+//                        String txt2 = scan.next();
+//                        controller.update(txt, txt2);
+//                        break;
                     case "6":
                         istrue = true;
                         break;
@@ -66,29 +70,14 @@ public class AccountView {
 
     }
 
-    private AccountStatus status() {
-        while (true) {
-            System.out.print("Выберите STATUS:\n" +
-                    "1.ACTIVE\n" +
-                    "2.BANNED\n" +
-                    "3.DELETED\n");
-            String txt = scan.next();
-            switch (txt) {
-                case "1":
-                    return AccountStatus.ACTIVE;
-                case "2":
-                    return AccountStatus.BANNED;
-                case "3":
-                    return AccountStatus.DELETED;
-                default:
-                    System.out.println(Message.NOVALUE);
-            }
-        }
+    private void print(Developer developer) {
+        System.out.println("ID: " + developer.getId() + "\nNAME: " + developer.getName() +
+                "\nACCOUNT: " + developer.getAccount().getName() + "\nACCOUNT STATUS: " +
+                developer.getAccount().getAccountStatus() + "\nSKILLS: " + convertSkillToString(developer.getSkill()));
     }
 
-    private void print(Account account) {
-        System.out.println("ID = " + account.getId() + " Skill = " + account.getName() +
-                " STATUS: " + account.getAccountStatus());
+    private String convertSkillToString(List<Skill> val){
+        List<String> list = val.stream().map(s-> s.getId() + "." + s.getName()).collect(Collectors.toList());
+        return list.stream().reduce((s1,s2) -> s1 + ", " + s2).orElse(null);
     }
-
 }

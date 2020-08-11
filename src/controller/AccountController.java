@@ -4,8 +4,6 @@ import model.Account;
 import model.AccountStatus;
 import repository.AccountRepository;
 import repository.io.JavaIOAccountRepositoryImpl;
-import view.Message;
-
 import java.util.List;
 
 
@@ -26,9 +24,7 @@ public class AccountController {
         Account account = repo.getByID(Long.parseLong(val));
         if (account == null) {
             System.out.println("Введено не корректное значение");
-        } else
-            System.out.println("ID = " + account.getId() + " Skill = " + account.getName() +
-                    " STATUS: " + account.getAccountStatus());
+        }
         return account;
     }
 
