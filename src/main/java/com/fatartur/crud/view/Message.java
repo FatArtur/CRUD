@@ -1,4 +1,4 @@
-package view;
+package main.java.com.fatartur.crud.view;
 
 public class Message {
     final static String NEW = "Введите новое значение!";
@@ -6,4 +6,6 @@ public class Message {
     final static String ALL = "Вывод всех значений:";
     final static String CHANGE = "Введите изменяемое значение";
     final static String NOVALUE = "Введено не корректное значение";
+    final static String CHAISE = "Выберите значение";
+    final static String ADDVALUE = "Добавьте значение. По окончании введите -";
 }

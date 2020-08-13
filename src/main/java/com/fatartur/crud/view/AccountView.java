@@ -1,8 +1,8 @@
-package view;
+package main.java.com.fatartur.crud.view;
 
-import controller.AccountController;
-import model.Account;
-import model.AccountStatus;
+import main.java.com.fatartur.crud.controller.AccountController;
+import main.java.com.fatartur.crud.model.Account;
+import main.java.com.fatartur.crud.model.AccountStatus;
 
 import java.util.Scanner;
 

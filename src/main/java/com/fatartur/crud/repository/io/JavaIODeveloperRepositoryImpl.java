@@ -1,18 +1,20 @@
-package repository.io;
+package main.java.com.fatartur.crud.repository.io;
 
-import controller.AccountController;
-import controller.SkillController;
-import model.Account;
-import model.Developer;
-import model.Skill;
-import repository.DeveloperRepository;
-
+import main.java.com.fatartur.crud.controller.AccountController;
+import main.java.com.fatartur.crud.controller.SkillController;
+import main.java.com.fatartur.crud.model.Account;
+import main.java.com.fatartur.crud.model.Developer;
+import main.java.com.fatartur.crud.model.Skill;
+import main.java.com.fatartur.crud.repository.AccountRepository;
+import main.java.com.fatartur.crud.repository.DeveloperRepository;
+import main.java.com.fatartur.crud.repository.SkillRepository;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class JavaIODeveloperRepositoryImpl implements DeveloperRepository {
     private final static String FILE_NAME = "developer.txt";
+
 
     @Override
     public Developer save(Developer val) throws Exception {

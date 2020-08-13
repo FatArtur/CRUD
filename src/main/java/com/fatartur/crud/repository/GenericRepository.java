@@ -1,6 +1,5 @@
-package repository;
+package main.java.com.fatartur.crud.repository;
 
-import java.io.IOException;
 import java.util.*;
 
 public interface GenericRepository <T,ID>{

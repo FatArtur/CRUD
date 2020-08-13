@@ -1,4 +1,4 @@
-package model;
+package main.java.com.fatartur.crud.model;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package repository.io;
+package main.java.com.fatartur.crud.repository.io;
 
-import model.Account;
-import model.AccountStatus;
-import repository.AccountRepository;
+import main.java.com.fatartur.crud.model.Account;
+import main.java.com.fatartur.crud.model.AccountStatus;
+import main.java.com.fatartur.crud.repository.AccountRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 

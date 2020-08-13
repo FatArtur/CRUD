@@ -1,10 +1,8 @@
-package repository.io;
+package main.java.com.fatartur.crud.repository.io;
 
-import model.Account;
-import model.Skill;
-import repository.SkillRepository;
+import main.java.com.fatartur.crud.model.Skill;
+import main.java.com.fatartur.crud.repository.SkillRepository;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 

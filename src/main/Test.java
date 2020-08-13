@@ -1,6 +1,6 @@
-import view.AccountView;
-import view.DeveloperView;
-import view.SkillView;
+package main;
+
+import main.java.com.fatartur.crud.view.DeveloperView;
 
 
 public class Test {

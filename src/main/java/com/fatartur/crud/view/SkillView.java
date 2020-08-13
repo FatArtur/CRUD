@@ -1,17 +1,13 @@
-package view;
+package main.java.com.fatartur.crud.view;
 
+import main.java.com.fatartur.crud.controller.SkillController;
+import main.java.com.fatartur.crud.model.Skill;
 
-import controller.DeveloperController;
-import model.Account;
-import model.Developer;
-import model.Skill;
-
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
-public class DeveloperView {
-    private String viewMenu = "\nВыберите действие для Developer: \n" +
+public class SkillView {
+
+    private String viewMenu = "\nВыберите действие для Skill: \n" +
             "1.Создать\n" +
             "2.Удалить\n" +
             "3.Получить по ID\n" +
@@ -20,7 +16,7 @@ public class DeveloperView {
             "6.Выход\n";
 
     private Scanner scan;
-    private DeveloperController controller = new DeveloperController();
+    private SkillController controller = new SkillController();
 
     public void run() {
         boolean istrue = false;
@@ -48,15 +44,15 @@ public class DeveloperView {
                         break;
                     case "4":
                         System.out.println(Message.ALL);
-                        controller.getAll().stream().forEach(s-> print(s));
+                        controller.getAll();
                         break;
-//                    case "5":
-//                        System.out.println(Message.ID);
-//                        txt = scan.next();
-//                        System.out.println(Message.CHANGE);
-//                        String txt2 = scan.next();
-//                        controller.update(txt, txt2);
-//                        break;
+                    case "5":
+                        System.out.println(Message.ID);
+                        txt = scan.next();
+                        System.out.println(Message.CHANGE);
+                        String txt2 = scan.next();
+                        controller.update(txt,txt2);
+                        break;
                     case "6":
                         istrue = true;
                         break;
@@ -64,20 +60,13 @@ public class DeveloperView {
                         System.out.println(Message.NOVALUE);
                 }
             } catch (Exception e) {
-                System.out.println(e);
+                System.err.println(e);
             }
         }
 
     }
 
-    private void print(Developer developer) {
-        System.out.println("ID: " + developer.getId() + "\nNAME: " + developer.getName() +
-                "\nACCOUNT: " + developer.getAccount().getName() + "\nACCOUNT STATUS: " +
-                developer.getAccount().getAccountStatus() + "\nSKILLS: " + convertSkillToString(developer.getSkill()));
-    }
-
-    private String convertSkillToString(List<Skill> val){
-        List<String> list = val.stream().map(s-> s.getId() + "." + s.getName()).collect(Collectors.toList());
-        return list.stream().reduce((s1,s2) -> s1 + ", " + s2).orElse(null);
+    private void print(Skill skill) {
+        System.out.println("ID = " + skill.getId() + " Skill = " + skill.getName());
     }
 }

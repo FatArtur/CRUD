@@ -1,11 +1,11 @@
-package repository.io;
+package main.java.com.fatartur.crud.repository.io;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class IOSystem {
-    private final static String pathToFile = "/Users/Artur/Desktop/Java/CRUD_Files/";
+    private final static String pathToFile = "/Users/Artur/IdeaProjects/CRUD/src/main/resources/";
 
     public static List<String> read(String filename){
         List<String> list = new ArrayList<>();

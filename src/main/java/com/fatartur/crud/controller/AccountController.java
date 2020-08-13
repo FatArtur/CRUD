@@ -1,9 +1,9 @@
-package controller;
+package main.java.com.fatartur.crud.controller;
 
-import model.Account;
-import model.AccountStatus;
-import repository.AccountRepository;
-import repository.io.JavaIOAccountRepositoryImpl;
+import main.java.com.fatartur.crud.model.Account;
+import main.java.com.fatartur.crud.model.AccountStatus;
+import main.java.com.fatartur.crud.repository.AccountRepository;
+import main.java.com.fatartur.crud.repository.io.JavaIOAccountRepositoryImpl;
 import java.util.List;
 
 
