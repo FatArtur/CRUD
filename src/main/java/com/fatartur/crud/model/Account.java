@@ -1,8 +1,8 @@
 package main.java.com.fatartur.crud.model;
 
 public class Account {
-    private String name;
     private Long id;
+    private String name;
     private AccountStatus accountStatus;
 
     public String getName() {

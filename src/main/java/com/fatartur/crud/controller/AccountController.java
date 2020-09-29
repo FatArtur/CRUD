@@ -4,11 +4,13 @@ import main.java.com.fatartur.crud.model.Account;
 import main.java.com.fatartur.crud.model.AccountStatus;
 import main.java.com.fatartur.crud.repository.AccountRepository;
 import main.java.com.fatartur.crud.repository.io.JavaIOAccountRepositoryImpl;
+import main.java.com.fatartur.crud.repository.io.jsonIO.JavaIOAccountRepJSON;
+
 import java.util.List;
 
 
 public class AccountController {
-    private AccountRepository repo = new JavaIOAccountRepositoryImpl();
+    private AccountRepository repo = new JavaIOAccountRepJSON();
 
     public Account create(String val) throws Exception {
         Account account = new Account();

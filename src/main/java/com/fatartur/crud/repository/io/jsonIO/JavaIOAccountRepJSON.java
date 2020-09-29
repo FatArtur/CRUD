@@ -1,13 +1,16 @@
-package main.java.com.fatartur.crud.repository.io;
+package main.java.com.fatartur.crud.repository.io.jsonIO;
 
+import com.google.gson.Gson;
 import main.java.com.fatartur.crud.model.Account;
 import main.java.com.fatartur.crud.model.AccountStatus;
 import main.java.com.fatartur.crud.repository.AccountRepository;
+import main.java.com.fatartur.crud.repository.io.IOSystem;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JavaIOAccountRepositoryImpl implements AccountRepository {
-    private final static String FILE_NAME = "account.txt";
+public class JavaIOAccountRepJSON implements AccountRepository {
+    private final static String FILE_NAME = "account.json";
 
     @Override
     public Account save(Account val) throws Exception {
@@ -58,18 +61,15 @@ public class JavaIOAccountRepositoryImpl implements AccountRepository {
     }
 
     private List<Account> convertToData(List<String> val) {
-        return val.stream().map(s -> s.split(",")).map(s -> {
-            Account account = new Account();
-            account.setId(Long.parseLong(s[0]));
-            account.setName(s[1]);
-            account.setAccountStatus(AccountStatus.valueOf(s[2]));
+        return val.stream().map(s -> {
+            Account account = new Gson().fromJson(s, Account.class);
             return account;
         }).collect(Collectors.toList());
+
     }
 
     private List<String> convertToString(List<Account> val) {
-        return val.stream().map(s -> s.getId() + "," + s.getName() + "," +
-                s.getAccountStatus()).collect(Collectors.toList());
+        return val.stream().map(s -> {String json = new Gson().toJson(s); return json;}).collect(Collectors.toList());
     }
 
     private List<Account> getAllInternal() throws Exception {
