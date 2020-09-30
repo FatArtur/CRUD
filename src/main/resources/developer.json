@@ -1,0 +1,2 @@
+{"id":1,"account":{"id":1,"name":"Account_1","accountStatus":"ACTIVE"},"name":"Timur","skill":[{"id":1,"name":"Java"},{"id":3,"name":"SQL"},{"id":5,"name":"Python"}]}
+{"id":2,"account":{"id":3,"name":"Account_3","accountStatus":"ACTIVE"},"name":"Artur","skill":[{"id":2,"name":"C++"},{"id":1,"name":"Java"},{"id":4,"name":"Maven"},{"id":3,"name":"SQL"}]}

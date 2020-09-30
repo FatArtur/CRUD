@@ -65,7 +65,6 @@ public class JavaIOAccountRepJSON implements AccountRepository {
             Account account = new Gson().fromJson(s, Account.class);
             return account;
         }).collect(Collectors.toList());
-
     }
 
     private List<String> convertToString(List<Account> val) {

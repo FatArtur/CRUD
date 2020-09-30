@@ -6,6 +6,7 @@ import main.java.com.fatartur.crud.model.Account;
 import main.java.com.fatartur.crud.model.AccountStatus;
 import main.java.com.fatartur.crud.view.AccountView;
 import main.java.com.fatartur.crud.view.DeveloperView;
+import main.java.com.fatartur.crud.view.SkillView;
 
 
 public class Test {
@@ -13,9 +14,9 @@ public class Test {
 
 //        SkillView vR = new SkillView();
 //        vR.run();
-        AccountView aV = new AccountView();
-        aV.run();
-//        DeveloperView dV = new DeveloperView();
-//        dV.run();
+//        AccountView aV = new AccountView();
+//        aV.run();
+        DeveloperView dV = new DeveloperView();
+        dV.run();
     }
 }

@@ -4,10 +4,10 @@ import java.util.List;
 
 
 public class Developer {
-    private List<Skill> skill;
-    private Account account;
     private Long id;
+    private Account account;
     private String name;
+    private List<Skill> skill;
 
     public List<Skill> getSkill() {
         return skill;

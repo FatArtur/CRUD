@@ -9,29 +9,40 @@ import main.java.com.fatartur.crud.repository.SkillRepository;
 import main.java.com.fatartur.crud.repository.io.JavaIOAccountRepositoryImpl;
 import main.java.com.fatartur.crud.repository.io.JavaIODeveloperRepositoryImpl;
 import main.java.com.fatartur.crud.repository.io.JavaIOSkillRepositoryImpl;
+import main.java.com.fatartur.crud.repository.io.jsonIO.JavaIOAccountRepJSON;
+import main.java.com.fatartur.crud.repository.io.jsonIO.JavaIODeveloperRepJSON;
+import main.java.com.fatartur.crud.repository.io.jsonIO.JavaIOSkillRepJSON;
 
 import java.util.List;
 
 public class DeveloperController {
-    private DeveloperRepository repo = new JavaIODeveloperRepositoryImpl();
+    private DeveloperRepository repo = new JavaIODeveloperRepJSON();
+
+    private AccountRepository createAccountRep(){
+        return new JavaIOAccountRepJSON();
+    }
+
+    private SkillRepository createSkillRep(){
+        return new JavaIOSkillRepJSON();
+    }
 
     public List<Account> getAccounts() throws Exception{
-        AccountRepository accountRepository = new JavaIOAccountRepositoryImpl();
+        AccountRepository accountRepository = createAccountRep();
         return accountRepository.getAll();
     }
 
     public Account giveAccount(String s) throws Exception{
-        AccountRepository accountRepository = new JavaIOAccountRepositoryImpl();
+        AccountRepository accountRepository = createAccountRep();
         return accountRepository.getByID(Long.parseLong(s));
     }
 
     public List<Skill> getSkills() throws Exception{
-        SkillRepository skillRepository = new JavaIOSkillRepositoryImpl();
+        SkillRepository skillRepository = createSkillRep();
         return skillRepository.getAll();
     }
 
     public Skill giveSkill(String s) throws Exception{
-        SkillRepository skillRepository = new JavaIOSkillRepositoryImpl();
+        SkillRepository skillRepository = createSkillRep();
         return skillRepository.getByID(Long.parseLong(s));
     }
 

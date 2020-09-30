@@ -2,8 +2,8 @@ package main.java.com.fatartur.crud.model;
 
 public class Skill {
 
-    private String name;
     private Long id;
+    private String name;
 
     public String getName() {
         return name;

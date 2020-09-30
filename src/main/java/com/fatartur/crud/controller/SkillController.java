@@ -3,11 +3,12 @@ package main.java.com.fatartur.crud.controller;
 import main.java.com.fatartur.crud.model.Skill;
 import main.java.com.fatartur.crud.repository.io.JavaIOSkillRepositoryImpl;
 import main.java.com.fatartur.crud.repository.SkillRepository;
+import main.java.com.fatartur.crud.repository.io.jsonIO.JavaIOSkillRepJSON;
 
 import java.util.List;
 
 public class SkillController {
-    private SkillRepository repo = new JavaIOSkillRepositoryImpl();
+    private SkillRepository repo = new JavaIOSkillRepJSON();
 
     public Skill create(String val) throws Exception {
         Skill skill = new Skill();
