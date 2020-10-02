@@ -1,6 +1,0 @@
-1,Account_1,ACTIVE
-2,Account_2,ACTIVE
-3,Account_3,BANNED
-4,Account_5,DELETED
-5,Account_6,ACTIVE
-6,Account_7,BANNED
