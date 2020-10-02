@@ -3,8 +3,7 @@ package main.java.com.fatartur.crud.controller;
 import main.java.com.fatartur.crud.model.Account;
 import main.java.com.fatartur.crud.model.AccountStatus;
 import main.java.com.fatartur.crud.repository.AccountRepository;
-import main.java.com.fatartur.crud.repository.io.JavaIOAccountRepositoryImpl;
-import main.java.com.fatartur.crud.repository.io.jsonIO.JavaIOAccountRepJSON;
+import main.java.com.fatartur.crud.repository.io.JavaIOAccountRepJSON;
 
 import java.util.List;
 

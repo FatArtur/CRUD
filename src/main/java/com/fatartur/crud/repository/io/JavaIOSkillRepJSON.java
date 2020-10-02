@@ -1,4 +1,4 @@
-package main.java.com.fatartur.crud.repository.io.jsonIO;
+package main.java.com.fatartur.crud.repository.io;
 
 import com.google.gson.Gson;
 import main.java.com.fatartur.crud.model.Account;

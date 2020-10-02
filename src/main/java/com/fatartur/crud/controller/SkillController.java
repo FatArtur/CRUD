@@ -1,9 +1,8 @@
 package main.java.com.fatartur.crud.controller;
 
 import main.java.com.fatartur.crud.model.Skill;
-import main.java.com.fatartur.crud.repository.io.JavaIOSkillRepositoryImpl;
 import main.java.com.fatartur.crud.repository.SkillRepository;
-import main.java.com.fatartur.crud.repository.io.jsonIO.JavaIOSkillRepJSON;
+import main.java.com.fatartur.crud.repository.io.JavaIOSkillRepJSON;
 
 import java.util.List;
 

@@ -6,12 +6,9 @@ import main.java.com.fatartur.crud.model.Skill;
 import main.java.com.fatartur.crud.repository.AccountRepository;
 import main.java.com.fatartur.crud.repository.DeveloperRepository;
 import main.java.com.fatartur.crud.repository.SkillRepository;
-import main.java.com.fatartur.crud.repository.io.JavaIOAccountRepositoryImpl;
-import main.java.com.fatartur.crud.repository.io.JavaIODeveloperRepositoryImpl;
-import main.java.com.fatartur.crud.repository.io.JavaIOSkillRepositoryImpl;
-import main.java.com.fatartur.crud.repository.io.jsonIO.JavaIOAccountRepJSON;
-import main.java.com.fatartur.crud.repository.io.jsonIO.JavaIODeveloperRepJSON;
-import main.java.com.fatartur.crud.repository.io.jsonIO.JavaIOSkillRepJSON;
+import main.java.com.fatartur.crud.repository.io.JavaIOAccountRepJSON;
+import main.java.com.fatartur.crud.repository.io.JavaIODeveloperRepJSON;
+import main.java.com.fatartur.crud.repository.io.JavaIOSkillRepJSON;
 
 import java.util.List;
 
